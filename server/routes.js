@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const { movieController } = require("./controllers/movieController");
 const { userController } = require("./controllers/userController");
+const { authController } = require("./controllers/authController");
 
 router
-  .route("/movielist")
+  .route("/movies")
   .get(movieController.get)
   .post(movieController.post)
   .patch(movieController.update)
@@ -15,5 +16,12 @@ router
   .post(userController.post)
   .patch(userController.update)
   .delete(userController.delete);
+
+router
+  .route("/auth")
+  .get(authController.get)
+  .post(authController.post)
+  .patch(authController.update)
+  .delete(authController.delete);
 
 module.exports = router;
