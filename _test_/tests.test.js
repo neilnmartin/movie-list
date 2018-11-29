@@ -7,34 +7,69 @@ const request = require("supertest");
 //   expect(2 + 2).toBe(4);
 // });
 
-describe("Test the API path", () => {
-  test("/api/movielist should respond to a GET request", done => {
+describe("Tests the API path for movies", () => {
+  test("/api/movies should respond to a GET request", done => {
     request(app)
-      .get("/api/movielist")
+      .get("/api/movies")
       .then(response => {
         expect(response.statusCode).toBe(200);
         done();
       });
   });
-  test("/api/movielist should respond to a POST request", done => {
+  test("/api/movies should respond to a POST request", done => {
     request(app)
-      .post("/api/movielist")
+      .post("/api/movies")
       .then(response => {
         expect(response.statusCode).toBe(201);
         done();
       });
   });
-  test("/api/movielist should respond to a PATCH request", done => {
+  test("/api/movies should respond to a PATCH request", done => {
     request(app)
-      .patch("/api/movielist")
+      .patch("/api/movies")
       .then(response => {
         expect(response.statusCode).toBe(202);
         done();
       });
   });
-  test("/api/movielist should respond to a DELETE request", done => {
+  test("/api/movies should respond to a DELETE request", done => {
     request(app)
-      .delete("/api/movielist")
+      .delete("/api/movies")
+      .then(response => {
+        expect(response.statusCode).toBe(203);
+        done();
+      });
+  });
+});
+
+describe("Tests the API path for users", () => {
+  test("/api/users should respond to a GET request", done => {
+    request(app)
+      .get("/api/users")
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+        done();
+      });
+  });
+  test("/api/users should respond to a POST request", done => {
+    request(app)
+      .post("/api/users")
+      .then(response => {
+        expect(response.statusCode).toBe(201);
+        done();
+      });
+  });
+  test("/api/users should respond to a PATCH request", done => {
+    request(app)
+      .patch("/api/users")
+      .then(response => {
+        expect(response.statusCode).toBe(202);
+        done();
+      });
+  });
+  test("/api/users should respond to a DELETE request", done => {
+    request(app)
+      .delete("/api/users")
       .then(response => {
         expect(response.statusCode).toBe(203);
         done();
