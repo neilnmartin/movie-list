@@ -21,6 +21,9 @@ export default function SignupView(props) {
           onChange={e => props.handleInput(e)}
         />
         <br />
+        <p>
+          {props.matchpassword ? "Password verified" : "Passwords do not match"}
+        </p>
         <button>Sign Up</button>
       </form>
       Already have an account?{" "}

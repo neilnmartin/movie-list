@@ -1,4 +1,4 @@
-const pg = require("pg");
+const pg = require("mysql2");
 const Sequelize = require("sequelize");
 require("dotenv").config();
 
@@ -8,7 +8,7 @@ const connection = new Sequelize(
   process.env.DB_PW,
   {
     host: process.env.DB_HOST,
-    dialect: "postgres",
+    dialect: "mysql",
     logging: true,
     operatorsAliases: false,
     define: {
@@ -19,7 +19,7 @@ const connection = new Sequelize(
 
 connection
   .authenticate()
-  .then(() => console.log(`connected to postgres`))
+  .then(() => console.log(`connected to mysql`))
   .catch(err => console.error(`unable to connect: `, err));
 
 module.exports = connection;

@@ -17,4 +17,9 @@ const Movie = connection.define("movie", {
 User.hasMany(Movie, { foreignKey: "" });
 Movie.belongsTo(User, { foreignKey: "id" });
 
+connection
+  .sync({ force: false })
+  .then(() => console.log(`synced with mysql database`))
+  .catch(err => console.error(err));
+
 module.exports = { User, Movie };

@@ -1,4 +1,5 @@
 const { User } = require("../../db/sequelize_models");
+const bcrypt = require("bcrypt-nodejs");
 
 const userController = {
   get: (req, res) => {

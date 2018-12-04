@@ -11,7 +11,8 @@ export default class Login extends Component {
       loginview: true,
       username: "",
       password: "",
-      verifypassword: ""
+      verifypassword: "",
+      matchpassword: null
     };
     this.handleInput = this.handleInput.bind(this);
     this.toggleLoginView = this.toggleLoginView.bind(this);
@@ -27,7 +28,10 @@ export default class Login extends Component {
         [e.target.name]: e.target.value
       },
       () => {
-        console.log(this.state);
+        this.state.password === this.state.verifypassword &&
+        this.state.password.length > 1
+          ? this.setState({ matchpassword: true })
+          : this.setState({ matchpassword: false });
       }
     );
   }
@@ -36,20 +40,17 @@ export default class Login extends Component {
 
   render() {
     const { loginview } = this.state;
-    if (loginview) {
-      return (
-        <LoginView
-          handleInput={this.handleInput}
-          toggleLoginView={this.toggleLoginView}
-        />
-      );
-    } else {
-      return (
-        <SignupView
-          handleInput={this.handleInput}
-          toggleLoginView={this.toggleLoginView}
-        />
-      );
-    }
+    return loginview ? (
+      <LoginView
+        handleInput={this.handleInput}
+        toggleLoginView={this.toggleLoginView}
+      />
+    ) : (
+      <SignupView
+        handleInput={this.handleInput}
+        toggleLoginView={this.toggleLoginView}
+        matchpassword={this.state.matchpassword}
+      />
+    );
   }
 }
