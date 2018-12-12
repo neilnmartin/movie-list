@@ -36,7 +36,12 @@ export default class Login extends Component {
     );
   }
 
-  handleLoginSubmit() {}
+  handleLoginSubmit() {
+    axios.post("", {
+      username: this.state.username,
+      password: this.state.password
+    });
+  }
 
   render() {
     const { loginview } = this.state;
