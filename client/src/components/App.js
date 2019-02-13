@@ -18,7 +18,12 @@ export default class App extends Component {
         </div>
       );
     } else {
-      return <div id={style.wrapper}>Hello from App</div>;
+      return (
+        <div id={style.wrapper}>
+          <div />
+          Hello from App
+        </div>
+      );
     }
   }
 }

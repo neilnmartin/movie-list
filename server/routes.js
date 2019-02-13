@@ -12,9 +12,9 @@ router
 
 router
   .route("/users")
-  .get(userController.get)
-  .post(userController.post)
-  .patch(userController.update)
+  .get(userController.authUser)
+  .post(userController.createUser)
+  // .patch(userController.update)
   .delete(userController.delete);
 
 router

@@ -2,9 +2,9 @@ const connection = require("./sequelize_index");
 const Sequelize = require("sequelize");
 
 const User = connection.define("user", {
-  id: { type: Sequelize.STRING, primaryKey: true, autoIncrement: true },
-  name: { type: Sequelize.STRING },
-  password_hash: { type: Sequelize.STRING }
+  id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+  username: { type: Sequelize.STRING, require: true },
+  pw_hash: { type: Sequelize.STRING, require: true }
 });
 
 const Movie = connection.define("movie", {
@@ -22,4 +22,4 @@ connection
   .then(() => console.log(`synced with mysql database`))
   .catch(err => console.error(err));
 
-module.exports = { User, Movie };
+module.exports = { User };

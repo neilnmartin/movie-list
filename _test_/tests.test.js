@@ -1,5 +1,6 @@
 const app = require("../server/app");
 const request = require("supertest");
+const connection = require("../db/sequelize_index");
 
 // beforeAll(() => { models.sequelize.sync().then(()=>{ models.sequelize.close(); }) });
 
@@ -75,6 +76,12 @@ describe("Tests the API path for users", () => {
         done();
       });
   });
+});
+
+afterAll(async done => {
+  // Closing the DB connection allows Jest to exit successfully.
+  connection.close();
+  done();
 });
 
 // describe("Test the API path", () => {

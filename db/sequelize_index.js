@@ -1,4 +1,4 @@
-const pg = require("mysql2");
+const mysql = require("mysql2");
 const Sequelize = require("sequelize");
 require("dotenv").config();
 

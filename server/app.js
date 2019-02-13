@@ -5,12 +5,6 @@ const morgan = require("morgan");
 
 const router = require("./routes");
 const db = require("../db/sequelize_index");
-
-// Attempt to use pool:
-// const db = require("../db/poolindex");
-// db(() => console.log("connected to db"));
-// Using sequelize:
-
 const app = express();
 
 app.use(morgan("dev"));
