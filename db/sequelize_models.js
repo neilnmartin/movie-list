@@ -8,18 +8,18 @@ const User = connection.define("user", {
 });
 
 const Movie = connection.define("movie", {
-  name: { type: Sequelize.STRING },
+  title: { type: Sequelize.STRING },
   img_url: { type: Sequelize.STRING },
   rating: { type: Sequelize.INTEGER },
   description: { type: Sequelize.STRING }
 });
 
-User.hasMany(Movie, { foreignKey: "" });
-Movie.belongsTo(User, { foreignKey: "id" });
+User.hasMany(Movie);
+Movie.belongsTo(User);
 
 connection
   .sync({ force: false })
   .then(() => console.log(`synced with mysql database`))
   .catch(err => console.error(err));
 
-module.exports = { User };
+module.exports = { User, Movie };

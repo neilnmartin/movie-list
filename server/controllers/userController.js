@@ -1,10 +1,12 @@
 const { User } = require("../../db/sequelize_models");
+
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const userController = {
   authUser: (req, res) => {
-    const { username, pw } = req.body;
+    const { username, pw } = req.query;
+    console.log(req.query);
     User.findOne({ where: { username } })
       .then(data => {
         if (data !== null) {
@@ -12,17 +14,14 @@ const userController = {
           bcrypt
             .compare(pw, existingHash)
             .then(verified => {
+              let { username, id } = data.dataValues;
               verified
-                ? res
-                    .status(200)
-                    .send(
-                      JSON.stringify(`authenticated, id=${data.dataValues.id}`)
-                    )
-                : res.status(403).send("not authenticated");
+                ? res.status(200).send(JSON.stringify({ username, id }))
+                : res.status(203).send("not authenticated");
             })
             .catch(err => console.log(err));
         } else {
-          res.status(403).send("no such user, reroute to signup");
+          res.status(203).send("no such user, reroute to signup");
         }
       })
       .catch(err => console.log(err));
@@ -35,8 +34,8 @@ const userController = {
       } else {
         bcrypt.hash(pw, saltRounds).then(hash => {
           User.create({ username, pw_hash: hash }).then(newUser => {
-            console.log(newUser);
-            res.status(201).send(JSON.stringify(`user created: ${newUser}`));
+            console.log(newUser.dataValues);
+            res.status(201).send(JSON.stringify({ id: newUser.dataValues.id }));
           });
         });
       }
