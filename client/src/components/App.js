@@ -57,13 +57,15 @@ export default class App extends Component {
       })
       .then(data => {
         console.log(data);
-        this.setState({ movieData });
+        this.setState({ movieData: data.data.results }, () =>
+          console.log(this.state.movieData)
+        );
       })
       .catch(err => console.log(err));
   }
 
   render() {
-    const { signedIn, showSidebar, movieData } = this.state;
+    const { signedIn, userId, showSidebar, movieData } = this.state;
     if (signedIn !== true) {
       return (
         <div id={style.wrapper}>
@@ -83,7 +85,7 @@ export default class App extends Component {
             toggleSideBar={this.toggleSidebar}
             showSidebar={showSidebar}
           />
-          <MovieList movieData={movieData} />
+          <MovieList movieData={movieData} userId={userId} />
         </div>
       );
     }
