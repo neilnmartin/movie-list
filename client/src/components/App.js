@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import style from "../styles/App.css";
+import style from "./App.scss";
 import { tmdbkey } from "../../config";
 
 import Login from "./Login/Login";

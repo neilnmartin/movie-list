@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import MovieListItem from "./MovieListItem";
 
+import style from "./MovieList.css";
+
 export default class MovieList extends Component {
   constructor(props) {
     super(props);
