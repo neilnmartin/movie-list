@@ -12,6 +12,7 @@ export default class MovieList extends Component {
   addToList() {}
   render() {
     const { userId, movieData } = this.props;
+    // console.log(movieData[0]);
     return (
       <div>
         {movieData.map((movie, index) => (

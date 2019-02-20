@@ -11,14 +11,23 @@ export default class Sidebar extends Component {
   }
 
   render() {
-    const { showSidebar } = this.props;
+    const { showSidebar, toggleSidebar } = this.props;
     return (
       <div>
-        <div className={showSidebar ? style.visible : style.hidden} />
-        {`show Sidebar setting: ${showSidebar}`}
-        <div>Explore</div>
-        <div>My List</div>
-        <div>Account</div>
+        <div className={showSidebar ? style.visible : style.hidden}>
+          <div className={style.sideBarContainer}>
+            <div className={style.sideBarHead}>
+              <button onClick={() => toggleSidebar()}>☰</button>
+              <div>MyMovieList</div>
+            </div>
+
+            <div className={style.sideBarList}>
+              <div className={style.sideBarItem}>Explore</div>
+              <div>My List</div>
+              <div>Account</div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

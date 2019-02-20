@@ -4,7 +4,7 @@ import axios from "axios";
 import LoginView from "./LoginView";
 import SignupView from "./SignupView";
 
-import style from "./Login.scss";
+import style from "./Login.css";
 
 export default class Login extends Component {
   constructor(props) {

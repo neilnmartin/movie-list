@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import style from "./App.scss";
+import style from "./App.css";
 import { tmdbkey } from "../../config";
 
 import Login from "./Login/Login";
@@ -15,7 +15,7 @@ export default class App extends Component {
       signedIn: true,
       userId: 1,
       username: "testuser",
-      showSidebar: false,
+      showSidebar: true,
       searchTerm: "",
       movieData: []
       // TODO: Implement token
@@ -42,6 +42,16 @@ export default class App extends Component {
     this.setState({ searchTerm: e.target.value });
   }
 
+  getUserMovieList() {
+    const { userId } = this.state;
+    axios
+      .get("/api/movies", {
+        userId
+      })
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
+  }
+
   searchMovie() {
     const { searchTerm } = this.state;
     axios
@@ -56,7 +66,6 @@ export default class App extends Component {
         }
       })
       .then(data => {
-        console.log(data);
         this.setState({ movieData: data.data.results }, () =>
           console.log(this.state.movieData)
         );
@@ -76,14 +85,14 @@ export default class App extends Component {
       return (
         <div id={style.wrapper}>
           <div />
+          <Sidebar
+            toggleSidebar={this.toggleSidebar}
+            showSidebar={showSidebar}
+          />
           <Header
             toggleSidebar={this.toggleSidebar}
             handleSearchInput={this.handleSearchInput}
             searchMovie={this.searchMovie}
-          />
-          <Sidebar
-            toggleSideBar={this.toggleSidebar}
-            showSidebar={showSidebar}
           />
           <MovieList movieData={movieData} userId={userId} />
         </div>

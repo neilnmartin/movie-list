@@ -10,14 +10,14 @@ export default class Header extends Component {
   render() {
     const { toggleSidebar, searchMovie } = this.props;
     return (
-      <div>
-        <button onClick={() => toggleSidebar()}>TOGGLESIDEBAR</button>
+      <div className={style.headerContainer}>
+        <button onClick={() => toggleSidebar()}>☰</button>
         <div>MyMovieList</div>
         <input
           // className="searchInput"
           onKeyUp={e => this.props.handleSearchInput(e)}
-          required
           placeholder={"Search The Movie Database"}
+          required="true"
         />
         <button onClick={searchMovie}>Search</button>
       </div>

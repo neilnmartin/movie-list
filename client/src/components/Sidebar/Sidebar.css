@@ -1,0 +1,35 @@
+.visible {
+  display: flex;
+  transition: 0.5s;
+}
+.hidden {
+  display: none;
+}
+.sideBarContainer {
+  background-color: green;
+  height: 100vh;
+  width: 200px;
+  font-size: 1.1em;
+  z-index: 1;
+  position: fixed;
+  display: inline-block;
+}
+.sideBarHead {
+  display: flex;
+  flex-direction: row;
+}
+.sideBarList {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sideBarItem {
+  padding: 20px 50px;
+  font: 600;
+}
+
+.sideBarItem:hover {
+  font: 600;
+  background-color: gray;
+}

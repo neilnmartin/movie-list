@@ -8,10 +8,14 @@ const User = connection.define("user", {
 });
 
 const Movie = connection.define("movie", {
+  tmdbId: { type: Sequelize.INTEGER },
   title: { type: Sequelize.STRING },
   img_url: { type: Sequelize.STRING },
-  rating: { type: Sequelize.INTEGER },
-  description: { type: Sequelize.STRING }
+  vote_average: { type: Sequelize.DECIMAL },
+  overview: { type: Sequelize.STRING },
+  poster_path: { type: Sequelize.STRING },
+  backdrop_path: { type: Sequelize.STRING },
+  release_date: { type: Sequelize.STRING }
 });
 
 User.hasMany(Movie);
@@ -19,7 +23,7 @@ Movie.belongsTo(User);
 
 connection
   .sync({ force: false })
-  .then(() => console.log(`synced with mysql database`))
+  .then(() => console.log(`synced with pg database`))
   .catch(err => console.error(err));
 
 module.exports = { User, Movie };
